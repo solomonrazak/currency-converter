@@ -1,0 +1,16 @@
+<div class="flex justify-center mt-14">
+  <div class="flex gap-2 justify-center border border-gray-300">
+    <div
+      *ngFor="let currency of currencies"
+      class="text-white uppercase px-3 cursor-pointer font-semibold py-1"
+      [ngClass]="{
+        'bg-black text-white': selectedCurrency !== currency,
+        'bg-white text-black': selectedCurrency === currency
+      }"
+      (click)="selectCurrency(currency)"
+    >
+      {{ currency }}
+    </div>
+  </div>
+  
+</div>
