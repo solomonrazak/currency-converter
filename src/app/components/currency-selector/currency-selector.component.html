@@ -1,4 +1,4 @@
-<div class="flex justify-center mt-14">
+<div class="flex justify-center items-center gap-8 mt-14">
   <div class="flex gap-2 justify-center border border-gray-300">
     <div
       *ngFor="let currency of currencies"
@@ -10,6 +10,21 @@
       (click)="selectCurrency(currency)"
     >
       {{ currency }}
+    </div>
+  </div>
+  <p class="text-white font-semibold">convert To</p>
+
+  <div class="flex gap-2 justify-center border border-gray-300">
+    <div
+      *ngFor="let newCurrency of convertToCurrencies"
+      class="text-white uppercase px-3 cursor-pointer font-semibold py-1"
+      [ngClass]="{
+        'bg-black text-white': selectedToCurrency !== newCurrency,
+        'bg-white text-black': selectedToCurrency === newCurrency
+      }"
+      (click)="selectCurrencyToConvert(newCurrency)"
+    >
+      {{ newCurrency }}
     </div>
   </div>
   
