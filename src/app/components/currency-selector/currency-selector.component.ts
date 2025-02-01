@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgFor, NgClass } from '@angular/common';
+import { ConversionRatesService } from '../../services/conversion-rates.service';
 
 
 @Component({
@@ -11,11 +12,13 @@ import { NgFor, NgClass } from '@angular/common';
 })
 export class CurrencySelectorComponent {
 
-  currencies: string[] = ["eur", "usd", "gbp"];
-  selectedCurrency = "eur";
+  constructor (private convertCurrency: ConversionRatesService){}
+
+  currencies: string[] = ["usd", "eur", "gbp"];
+  selectedCurrency = "usd";
 
   convertToCurrencies: string[] = ["eur", "usd", "gbp"];
-    selectedToCurrency = "usd";
+    selectedToCurrency = "eur";
 
   // function to select a currency
   selectCurrency(currency: string): void{
@@ -23,6 +26,7 @@ export class CurrencySelectorComponent {
   }
 
 
+  // currencu to convert to
   selectCurrencyToConvert(newCurrency: string): void{
     this.selectedToCurrency = newCurrency;
 
