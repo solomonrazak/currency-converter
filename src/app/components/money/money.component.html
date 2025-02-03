@@ -8,15 +8,16 @@
       <input
         type=""
         class="w-[42vw] border border-gray-300 rounded-md text-center bg-transparent text-gray-400 h-24 text-6xl"
+        [(ngModel)]="amount"
       />
     </div>
     <p class="text-white font-bold text-4xl">=</p>
     <div class="text-white w-[42vw] border border-gray-300 h-24 rounded-md">
-      <p>200</p>
-      <p>usd</p>
+      <p>{{convertedAmount}}</p>
+      <p>{{selectedToCurrency}}</p>
     </div>
   </div>
-  <app-currency-selector></app-currency-selector>
+  <app-currency-selector [amount]="amount" [selectedCurrency]="selectedCurrency" (convertedAmountChange)="onConvertedAmountChange($event)" (selectedToCurrencyChange)="onSelectedToCurrencyChange($event)"></app-currency-selector>
   <p class="flex flex-col text-gray-500 mt-28 text-center text-[18px]">
     Insert the amount you want to convert in the field <span>above</span>
   </p>
