@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { NgFor, NgClass } from '@angular/common';
 import { ConversionRatesService } from '../../services/conversion-rates.service';
 
@@ -10,19 +18,15 @@ import { ConversionRatesService } from '../../services/conversion-rates.service'
   styleUrl: './currency-selector.component.css',
 })
 export class CurrencySelectorComponent implements OnInit {
-
   @Input() amount: number = 1; // Receive amount from parent
   @Input() selectedCurrency: string = 'USD'; // Receive currency from parent
   @Output() convertedAmountChange = new EventEmitter<number>();
- @Output() selectedToCurrencyChange = new EventEmitter<string>()
- 
-
+  @Output() selectedToCurrencyChange = new EventEmitter<string>();
 
   exchangeRates: { [key: string]: number } = {}; // Stores fetched exchange rates
   currencies: string[] = ['USD', 'EUR', 'GBP']; // Available currencies
   convertToCurrencies: string[] = ['EUR', 'USD', 'GBP'];
   selectedToCurrency = 'EUR'; // Default conversion currency
- 
 
   constructor(private conversionService: ConversionRatesService) {}
   ngOnInit() {
@@ -34,11 +38,11 @@ export class CurrencySelectorComponent implements OnInit {
     this.conversionService.getExchangeRates().subscribe((data) => {
       this.exchangeRates = data.conversion_rates;
       this.convertCurrency();
-    })
+    });
   }
- 
-   // Function to select a currency
-   selectCurrency(currency: string): void {
+
+  // Function to select a currency
+  selectCurrency(currency: string): void {
     this.selectedCurrency = currency;
     this.convertCurrency();
   }
@@ -46,10 +50,9 @@ export class CurrencySelectorComponent implements OnInit {
   // currency to convert to
   selectCurrencyToConvert(newCurrency: string): void {
     this.selectedToCurrency = newCurrency;
-    this.selectedToCurrencyChange.emit(newCurrency); 
+    this.selectedToCurrencyChange.emit(newCurrency);
     this.convertCurrency();
   }
-
 
   // Perform conversion
   convertCurrency() {
@@ -58,7 +61,7 @@ export class CurrencySelectorComponent implements OnInit {
         const rate = this.exchangeRates[this.selectedToCurrency];
         const newConvertedAmount = this.amount * rate;
         this.convertedAmountChange.emit(newConvertedAmount);
+      }
     }
   }
-}
 }
