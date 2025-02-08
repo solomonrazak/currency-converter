@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-spinner-loader',
   standalone: true,
@@ -8,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './spinner-loader.component.css'
 })
 export class SpinnerLoaderComponent {
+
+  spinner = 'images/loader.gif'
 
 }

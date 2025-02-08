@@ -28,6 +28,8 @@ export class CurrencySelectorComponent implements OnInit {
   convertToCurrencies: string[] = ['EUR', 'USD', 'GBP'];
   selectedToCurrency = 'EUR'; // Default conversion currency
 
+
+  
   constructor(private conversionService: ConversionRatesService) {}
   ngOnInit() {
     this.fetchExchangeRates();
